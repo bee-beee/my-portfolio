@@ -14,7 +14,11 @@ body {
     color: #e6e8ef;
     line-height: 1.6;
 }
-
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
 /* ================= GLOBAL ELEMENTS ================= */
 h1, h2, h3 {
     font-weight: 700;
