@@ -1,3 +1,4 @@
+* ================= RESET & BASE ================= */
 * {
     margin: 0;
     padding: 0;
@@ -37,7 +38,7 @@ p {
     opacity: 0.9;
 }
 
-section {
+section, header, footer {
     padding: 4rem 8%;
     animation: fadeUp 0.8s ease both;
 }
@@ -93,7 +94,7 @@ nav div a:hover {
 /* ================= ABOUT ================= */
 #about article {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
@@ -138,18 +139,6 @@ nav div a:hover {
     transform: translateY(-5px);
 }
 
-/* ================= EXPERIENCE ================= */
-#experience div.experience-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-}
-
-#experience article, .experience-image {
-    max-width: 100%;
-}
-
 /* ================= VISION ================= */
 #vision {
     background: linear-gradient(180deg, #0d1337, #141a30);
@@ -161,61 +150,15 @@ nav div a:hover {
     margin: 0 auto 2rem;
 }
 
-.vision-section {
-    padding: 120px 5%;
-    background: linear-gradient(180deg, #0b1020, #12193a);
-    color: white;
-    text-align: center;
-}
-
-.vision-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
-    min-height: 420px;
-}
-
-.vision-wheel {
-    position: relative;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #1e2a5a, #0b1020);
-    box-shadow: 0 0 40px rgba(100,120,255,0.25);
-}
-
-.vision-wheel .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.node {
-    position: absolute;
-    font-size: 0.85rem;
-    padding: 6px 12px;
-    background: #1d079814;
-    border-radius: 12px;
-    white-space: nowrap;
-}
-
-.ai { top: -14px; left: 50%; transform: translateX(-50%); }
-.ds { right: -40px; top: 50%; transform: translateY(-50%); }
-.neuro { bottom: -14px; left: 50%; transform: translateX(-50%); }
-.design { left: -60px; top: 50%; transform: translateY(-50%); }
-
 /* ================= MOTIVATION ================= */
-#motivation {
-    padding: 100px 8%;
-    background: radial-gradient(circle at left, rgba(120, 70, 255, 0.25), rgba(10, 12, 30, 1) 60%);
+#motivation article {
+    max-width: 700px;
+    margin-bottom: 1.5rem;
 }
 
 .motivation-wrapper {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 80px;
     flex-wrap: wrap;
@@ -223,7 +166,7 @@ nav div a:hover {
 
 .motivation-text {
     flex: 1;
-    max-width: 620px;
+    min-width: 300px;
 }
 
 .motivation-text h2 {
@@ -246,64 +189,6 @@ nav div a:hover {
     font-weight: 600;
     color: #cbb7ff;
     margin-bottom: 10px;
-}
-
-.motivation-image {
-    flex: 1;
-    max-width: 520px;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-}
-
-.motivation-image img,
-.about-image img,
-.experience-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* IMAGE CONTAINERS */
-.about-image,
-.experience-image,
-.motivation-image {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 520px;
-    border-radius: 16px;
-}
-
-/* soft edge gradient blend */
-.about-image::after,
-.experience-image::after,
-.motivation-image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 55%, rgba(11, 15, 26, 0.6) 100%), linear-gradient(to bottom, rgba(11, 15, 26, 0) 60%, rgba(11, 15, 26, 0.7) 100%);
-    pointer-events: none;
-}
-
-/* EMAIL & LINKEDIN ICONS */
-.email-icon,
-.linkedin-icon {
-    width: 80px;
-    height: 80px;
-    margin: 1rem auto;
-    background: rgba(0,0,0,0.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-img {
-    display: block;
-    width: 100%;
-    height: auto;
 }
 
 /* ================= RESEARCH ================= */
@@ -359,6 +244,7 @@ footer h2 {
 footer section {
     margin-bottom: 1.5rem;
     padding: 0;
+    animation: none;
 }
 
 footer p {
@@ -388,15 +274,172 @@ footer p {
     }
 }
 
+/* ================= IMAGE CONTAINERS ================= */
+.about-image, .experience-image, .motivation-image {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: auto;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.email-icon, .linkedin-icon {
+    width: 80px;
+    height: 80px;
+    margin: 1rem auto;
+    background: rgba(0,0,0,0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================= GRID HELPERS ================= */
+.about-grid, .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ================= VISION BOARD ================= */
+.vision-image {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 2rem auto;
+}
+
+.vision-segment {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(0.4);
+    transition: transform 0.8s ease, opacity 0.6s ease;
+}
+
+.segment-1 { transform: translate(-120px, -120px) scale(0.4); }
+.segment-2 { transform: translate(120px, -120px) scale(0.4); }
+.segment-3 { transform: translate(-120px, 120px) scale(0.4); }
+.segment-4 { transform: translate(120px, 120px) scale(0.4); }
+
+.segment-in {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.vision-section {
+    padding: 120px 5%;
+    background: linear-gradient(180deg, #0b1020, #12193a);
+    color: white;
+    text-align: center;
+}
+
+.vision-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    min-height: 420px;
+    overflow-x: auto;
+}
+
+.vision-wheel {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1e2a5a, #0b1020);
+    box-shadow: 0 0 40px rgba(100,120,255,0.25);
+}
+
+.vision-wheel .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.node {
+    position: absolute;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    background: #1d079814;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.ai { top: -14px; left: 50%; transform: translateX(-50%); }
+.ds { right: -40px; top: 50%; transform: translateY(-50%); }
+.neuro { bottom: -14px; left: 50%; transform: translateX(-50%); }
+.design { left: -60px; top: 50%; transform: translateY(-50%); }
+
+/* ================= MOTIVATION IMAGE ================= */
+.motivation-image {
+    flex: 1;
+    max-width: 520px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    background: rgba(72, 74, 163, 0.06);
+}
+
+.motivation-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ================= SOFT EDGE GRADIENT ================= */
+.about-image::after,
+.experience-image::after,
+.motivation-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at center, rgba(0, 0, 0, 0) 55%, rgba(11, 15, 26, 0.6) 100%),
+        linear-gradient(to bottom, rgba(11, 15, 26, 0) 60%, rgba(11, 15, 26, 0.7) 100%);
+    pointer-events: none;
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
-    .motivation-wrapper { gap: 40px; }
-    section, header, footer { padding: 3rem 6%; }
+    .motivation-wrapper {
+        gap: 40px;
+    }
+    section, header, footer {
+        padding: 3rem 6%;
+    }
 }
 
 @media (max-width: 768px) {
-    .about-grid, .experience-grid { grid-template-columns: 1fr; }
-    .motivation-wrapper { flex-direction: column; gap: 30px; }
-    section, header, footer { padding: 2rem 4%; }
-}
+    #about article,
+    #experience div {
+        grid-template-columns: 1fr;
+    }
 
+    .motivation-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    section, header, footer {
+        padding: 2rem 4%;
+    }
+}
