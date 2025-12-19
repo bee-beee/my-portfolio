@@ -13,7 +13,9 @@ body {
     background: linear-gradient(180deg, #0b0f1a, #12172a);
     color: #e6e8ef;
     line-height: 1.6;
+    overflow-x: hidden; /* prevent horizontal overflow */
 }
+
 
 .container {
     max-width: 1200px;
@@ -350,19 +352,22 @@ img {
 .vision-container {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* wrap nodes on smaller screens */
     margin-top: 60px;
     min-height: 420px;
-    overflow-x: auto;
 }
 
+
 .vision-wheel {
-    position: relative;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #1e2a5a, #0b1020);
-    box-shadow: 0 0 40px rgba(100,120,255,0.25);
+    max-width: 90%;
+    max-height: 90%;
 }
+
+.node {
+    max-width: 150px; /* prevent huge overflow */
+    word-break: break-word;
+}
+
 
 .vision-wheel .center {
     position: absolute;
@@ -438,7 +443,8 @@ img {
         gap: 30px;
     }
 
-    section, header, footer {
-        padding: 2rem 4%;
-    }
+   section, header, footer {
+    padding-bottom: 3rem; /* reduce extra space */
+}
+
 }
